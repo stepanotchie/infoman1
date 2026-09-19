@@ -17,33 +17,30 @@
 ### Customer
 - Primary Key: customer_id
 - Attributes:
-  - customer_id — Domain: numeric, auto-generated
-  - name — Domain: text
-  - phone_number — Domain: text, valid phone format
+  - customer_id — Domain: numeric integer, auto-generated
+  - name — Domain: text string
+  - phone_number — Domain: text string, valid phone format (7-15 character)
 
 ### Car
 - Primary Key: plate_number
 - Attributes:
-  - plate_number — Domain: text, alphanumeric, unique
-  - model — Domain: text
-  - color — Domain: text
-  - customer_id (FK) — Domain: numeric, references Customer
+  - plate_number — Domain: text string, alphanumeric string (e.g. 'XYZ-5467')
+  - model — Domain: text string(e.g 'Adventure')
+  - color — Domain: text string
 
 ### Mechanic
 - Primary Key: mechanic_id
 - Attributes:
-  - mechanic_id — Domain: numeric, auto-generated
-  - name — Domain: text
-  - specialty — Domain: text, one of engine / brakes / electrical
+  - mechanic_id — Domain: numeric integer
+  - name — Domain: text string
+  - specialty — Domain: text string (e.g. 'brake', 'engine')
 
 ### Service Appointment
 - Primary Key: appointment_id
 - Attributes:
   - appointment_id — Domain: numeric, auto-generated
-  - date — Domain: date
-  - repair_note — Domain: text
-  - plate_number (FK) — Domain: text, references Car
-  - mechanic_id (FK) — Domain: numeric, references Mechanic
+  - date — Domain: date (YYYY-MM-DD)
+  - repair_note — Domain: text string
 
 ## Task 3 — Relationships
 
