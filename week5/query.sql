@@ -3,30 +3,6 @@
 
 USE infoman1_vetclinic;
 
--- Sample data
--- Check owner_id / vet_id / pet_id values with SELECT * first;
--- adjust the IDs below if yours do not start at 1.
--- INSERT INTO owner (first_name, last_name, phone_number) VALUES
---   ('Owen', 'Anchola', '09453217890'),
---   ('Geoff', 'Carino', '09176542311'),
---   ('Wendy', 'Bustamante', '09328765432');
---
--- INSERT INTO veterinarian (first_name, last_name, specialization) VALUES
---   ('Ahron', 'Miranda', 'Small Animal Medicine'),
---   ('Prian', 'Gallardo', 'Surgery'),
---   ('Liam', 'Arias', 'Dermatology');
---
--- INSERT INTO pet (name, species, age, owner_id) VALUES
---   ('Kiko', 'Bird', 4, 1),
---   ('Mimi', 'Cat', 2, 2),
---   ('Tweety', 'Bird', 7, 3),
---   ('Luna', 'Cat', 5, 1);
---
--- INSERT INTO appointment (appointment_date, reason_for_visit, vet_id, pet_id) VALUES
---   ('2026-07-10 09:00:00', 'Annual checkup', 1, 1),
---   ('2026-08-15 14:30:00', 'Vaccination', 2, 2),
---   ('2026-09-01 10:00:00', 'Wing injury', 3, 3);
-
 -- TASK 1: Basic SELECT statements
 
 -- 1a. Every column, every row from pet
