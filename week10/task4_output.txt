@@ -1,0 +1,97 @@
+mysql> ALTER TABLE products
+    -> ADD COLUMN contact_number VARCHAR(20);
+Query OK, 0 rows affected (0.354 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT COUNT(*) AS null_names FROM products WHERE product_name IS NULL;
++------------+
+| null_names |
++------------+
+|          0 |
++------------+
+1 row in set (0.008 sec)
+
+mysql> SELECT sku, COUNT(*) AS copies FROM products GROUP BY sku HAVING COUNT(*) > 1;
+Empty set (0.030 sec)
+
+mysql> SELECT COUNT(*) AS bad_prices FROM products WHERE price <= 0 OR price IS NULL;
++------------+
+| bad_prices |
++------------+
+|          0 |
++------------+
+1 row in set (0.074 sec)
+
+mysql> ALTER TABLE products
+    -> MODIFY product_name VARCHAR(100) NOT NULL;
+Query OK, 0 rows affected (0.967 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO products (product_name, sku, price, stock_quantity, status)
+    -> VALUES ('Stapler', 'STP-001', 95.00, 40, 'Active');
+Query OK, 1 row affected (0.100 sec)
+
+mysql> INSERT INTO products (product_name, sku, price, stock_quantity, status)
+    -> VALUES (NULL, 'XXX-001', 50.00, 10, 'Active');
+ERROR 1048 (23000): Column 'product_name' cannot be null
+mysql>
+mysql> ALTER TABLE products
+    -> ADD CONSTRAINT uq_products_sku UNIQUE (sku);
+Query OK, 0 rows affected (0.758 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO products (product_name, sku, price, stock_quantity, status)
+    -> VALUES ('Highlighter', 'HL-001', 30.00, 60, 'Active');
+Query OK, 1 row affected (0.036 sec)
+
+mysql> INSERT INTO products (product_name, sku, price, stock_quantity, status)
+    -> VALUES ('Notebook Copy', 'NB-001', 45.00, 10, 'Active');
+ERROR 1062 (23000): Duplicate entry 'NB-001' for key 'products.uq_products_sku'
+mysql> ALTER TABLE products
+    -> ADD CONSTRAINT chk_products_price CHECK (price > 0);
+Query OK, 8 rows affected (0.731 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO products (product_name, sku, price, stock_quantity, status)
+    -> VALUES ('Pencil Case', 'PC-001', 85.00, 25, 'Active');
+Query OK, 1 row affected (0.090 sec)
+
+mysql> INSERT INTO products (product_name, sku, price, stock_quantity, status)
+    -> VALUES ('Free Pen', 'FP-001', -5.00, 10, 'Active');
+ERROR 3819 (HY000): Check constraint 'chk_products_price' is violated.
+mysql>
+mysql> ALTER TABLE products
+    -> MODIFY stock_quantity INT DEFAULT 0;
+Query OK, 0 rows affected (0.202 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO products (product_name, sku, price, status)
+    -> VALUES ('Paper Clips', 'PCL-001', 20.00, 'Active');
+Query OK, 1 row affected (0.092 sec)
+
+mysql> SELECT VERSION() AS mysql_version;
++---------------+
+| mysql_version |
++---------------+
+| 26.7.0        |
++---------------+
+1 row in set (0.019 sec)
+
+mysql> SELECT product_id, product_name, sku, price, stock_quantity, status, contact_number
+    -> FROM products
+    -> ORDER BY product_id;
++------------+-----------------------+--------------+--------+----------------+--------+----------------+
+| product_id | product_name          | sku          | price  | stock_quantity | status | contact_number |
++------------+-----------------------+--------------+--------+----------------+--------+----------------+
+|          1 | Notebook              | NB-001       |  45.00 |            100 | Active | NULL           |
+|          2 | Ballpen               | BP-001       |  15.00 |            250 | Active | NULL           |
+|          3 | USB Drive             | USB-001      | 350.00 |             30 | Active | NULL           |
+|          4 | Ruler                 | RL-001       |  25.00 |             80 | Active | NULL           |
+|          6 | Scientific Calculator | CALC-SCI-001 | 875.00 |             20 | Active | NULL           |
+|          7 | Compass               | CMP-001      | 120.00 |             50 | Active | NULL           |
+|          8 | Stapler               | STP-001      |  95.00 |             40 | Active | NULL           |
+|          9 | Highlighter           | HL-001       |  30.00 |             60 | Active | NULL           |
+|         11 | Pencil Case           | PC-001       |  85.00 |             25 | Active | NULL           |
+|         12 | Paper Clips           | PCL-001      |  20.00 |              0 | Active | NULL           |
++------------+-----------------------+--------------+--------+----------------+--------+----------------+
+10 rows in set (0.080 sec)
