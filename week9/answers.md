@@ -21,7 +21,7 @@ ORDER BY o.order_id;
 ```
 
 **Evidence (screenshot filename, output, or file reference in this folder):**
-`screenshots/task1_output.png` — 3 rows returned:
+`task1_output.png` — 3 rows returned:
 
 | student_name | program | order_id | order_date |
 |--------------|---------|----------|------------|
@@ -29,7 +29,7 @@ ORDER BY o.order_id;
 | Ana Cruz     | BSIT    | 102      | 2026-08-15 |
 | Dan Reyes    | BSIT    | 103      | 2026-08-16 |
 
-![Task 1 output](screenshots/task1_output.png)
+![Task 1 output](task1_output.png)
 
 **Reflection question:**
 An INNER JOIN returns only rows that have a match on both sides. Ben and Cara have no row in `orders`, so they have nothing to match and are removed by design, which is not data loss. This is exactly what a completed-sales report wants: only students who actually bought something, with no blank rows.
@@ -54,7 +54,7 @@ ORDER BY s.student_id;
 ```
 
 **Evidence (screenshot filename, output, or file reference in this folder):**
-`screenshots/task2a_output.png` — 5 rows returned (all four students; Ben and Cara show NULL):
+`task2a_output.png` — 5 rows returned (all four students; Ben and Cara show NULL):
 
 | student_name | program | order_id | order_date |
 |--------------|---------|----------|------------|
@@ -64,16 +64,16 @@ ORDER BY s.student_id;
 | Cara Yu      | BSIS    | NULL     | NULL       |
 | Dan Reyes    | BSIT    | 103      | 2026-08-16 |
 
-![Task 2a output](screenshots/task2a_output.png)
+![Task 2a output](task2a_output.png)
 
-`screenshots/task2b_output.png` — 2 rows returned (only students who never ordered):
+`task2b_output.png` — 2 rows returned (only students who never ordered):
 
 | student_name | program | order_id | order_date |
 |--------------|---------|----------|------------|
 | Ben Lim      | BSCS    | NULL     | NULL       |
 | Cara Yu      | BSIS    | NULL     | NULL       |
 
-![Task 2b output](screenshots/task2b_output.png)
+![Task 2b output](task2b_output.png)
 
 **Reflection question:**
 In a LEFT JOIN, `NULL` means no matching row exists on the right side; it is not zero or an empty string. `NULL` is never equal to anything, not even another `NULL`, so `= NULL` evaluates to unknown and does not match the rows. `IS NULL` is the correct test for the missing state.
@@ -94,7 +94,7 @@ ORDER BY o.order_id, m.item_name;
 ```
 
 **Evidence (screenshot filename, output, or file reference in this folder):**
-`screenshots/task3_output.png` — 4 rows returned:
+`task3_output.png` — 4 rows returned:
 
 | student_name | program | order_id | item_name    | quantity | price | line_total |
 |--------------|---------|----------|--------------|----------|-------|------------|
@@ -103,7 +103,7 @@ ORDER BY o.order_id, m.item_name;
 | Ana Cruz     | BSIT    | 102      | Burger Steak | 1        | 89.00 | 89.00      |
 | Dan Reyes    | BSIT    | 103      | Siomai Rice  | 1        | 65.00 | 65.00      |
 
-![Task 3 output](screenshots/task3_output.png)
+![Task 3 output](task3_output.png)
 
 **Reflection question:**
 Each join links a different pair of tables through a different key, so each needs its own `ON` to tell MySQL how the new table's rows pair with the rows already built. If an `ON` is missing, or two joins share one, the rows pair incorrectly. Leaving `ON` out gives a Cartesian product (every combination of rows), which inflates the row count with wrong data.
@@ -143,7 +143,7 @@ ORDER BY o.order_date DESC, m.item_name, s.student_name;
 ```
 
 **Evidence (screenshot filename, output, or file reference in this folder):**
-`screenshots/task4a_output.png` — Version A, 4 rows:
+`task4a_output.png` — Version A, 4 rows:
 
 | buyer     | item         | line_total |
 |-----------|--------------|------------|
@@ -152,13 +152,13 @@ ORDER BY o.order_date DESC, m.item_name, s.student_name;
 | Ana Cruz  | Iced Tea     | 30.00      |
 | Ana Cruz  | Siomai Rice  | 130.00     |
 
-![Task 4 Version A](screenshots/task4a_output.png)
+![Task 4 Version A](task4a_output.png)
 
-`screenshots/task4b_output.png` — Version B, 4 rows (identical to Version A; Ben and Cara are gone):
+`task4b_output.png` — Version B, 4 rows (identical to Version A; Ben and Cara are gone):
 
-![Task 4 Version B](screenshots/task4b_output.png)
+![Task 4 Version B](task4b_output.png)
 
-`screenshots/task4c_output.png` — Version C (fix), 6 rows:
+`task4c_output.png` — Version C (fix), 6 rows:
 
 | buyer     | item         | line_total |
 |-----------|--------------|------------|
@@ -169,7 +169,7 @@ ORDER BY o.order_date DESC, m.item_name, s.student_name;
 | Ben Lim   | NULL         | NULL       |
 | Cara Yu   | NULL         | NULL       |
 
-![Task 4 Version C](screenshots/task4c_output.png)
+![Task 4 Version C](task4c_output.png)
 
 **Row-count comparison:**
 
