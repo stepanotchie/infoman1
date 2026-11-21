@@ -34,7 +34,6 @@ WHERE NOT (student_id = 101 AND course_id = 'IT102');
 
 -- TASK 2 - FIRST NORMAL FORM (1NF)
 
-
 -- [Task 2] Create 1NF table: one row per student-course pair, composite PK
 CREATE TABLE student_enrollment_1nf (
   student_id      INT           NOT NULL,
@@ -68,10 +67,6 @@ GROUP BY student_id;
 
 
 -- TASK 3 - SECOND NORMAL FORM (2NF)
--- Composite key: (student_id, course_id)
--- FDs: student_id -> student_name | course_id -> course_title, dept_id,
---      department_name | dept_id -> department_name |
---      (student_id, course_id) -> grade
 
 -- [Task 3a] students(student_id, student_name)
 CREATE TABLE students (
@@ -125,7 +120,6 @@ ORDER BY s.student_id, c.course_id;
 
 
 -- TASK 4 - THIRD NORMAL FORM (3NF)
--- Transitive chain: course_id -> dept_id -> department_name
 
 -- [Task 4a] departments(dept_id, department_name)
 CREATE TABLE departments (
